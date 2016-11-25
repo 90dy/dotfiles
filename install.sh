@@ -1,22 +1,23 @@
-#/bin/sh
+#!/bin/bash
 
 # DEFINE BASE VARIABLES
 os=$(uname)
-dname=$(readlink -f $(dirname $0))
-pkgs="zsh ssh git vim tmux"
+dname=$(stat -f $(dirname $0))
+bpkgs="ssh git"
+pkgs="fizsh vim tmux"
 
 # PACKAGES CONFIGURATION
 if [ "$os" =  "Linux" ]
 then
     #sudo apt-get update
-    sudo apt-get install -y --force-yes $pkgs
+    sudo apt-get install -y --force-yes $bpkgs $pkgs
 elif [ "$os" = "Darwin" ]
 then
     brew update
     brew install $pkgs
 fi 
 
-# GIT CONFIG
+# GIT
 echo "Git configuration"
 echo "Enter your name :"
 read name
@@ -25,13 +26,12 @@ echo "Enter your email :"
 read email
 git config --global user.email $email
 
-# ZSH CONFIGURATION
-git clone --depth=1 --branch=master https://github.com/zsh-users/antigen.git $HOME/.antigen
-cp $dname/zshrc $HOME/.zshrc
-
-# TMUX CONFIGURATION (ITERM LIKE AND PERSONAL)
+# TMUX (ITERM LIKE)
 cp $dname/tmux.conf $HOME/.tmux.conf
 
-# VIM CONFIGURATION
+# fizsh
+chsh -s fizsh
+
+# VIM
 git clone --depth=1 --branch=master https://github.com/amix/vimrc.git $HOME/.vim_runtime
 sh $HOME/.vim_runtime/install_awesome_vimrc.sh
