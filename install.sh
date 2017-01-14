@@ -2,14 +2,14 @@
 
 # DEFINE BASE VARIABLES
 os=$(uname)
-dname=$(stat -f $(dirname $0))
+dname=$(cd $(dirname $0) && pwd)
 bpkgs="ssh git"
 pkgs="fizsh vim tmux"
 
 # PACKAGES CONFIGURATION
 if [ "$os" =  "Linux" ]
 then
-    #sudo apt-get update
+    sudo apt-get update
     sudo apt-get install -y --force-yes $bpkgs $pkgs
 elif [ "$os" = "Darwin" ]
 then
@@ -29,9 +29,11 @@ git config --global user.email $email
 # TMUX (ITERM LIKE)
 cp $dname/tmux.conf $HOME/.tmux.conf
 
-# fizsh
-chsh -s fizsh
-
 # VIM
 git clone --depth=1 --branch=master https://github.com/amix/vimrc.git $HOME/.vim_runtime
 sh $HOME/.vim_runtime/install_awesome_vimrc.sh
+
+# FIZSH
+echo "To use fizsh as default shell, change /etc/passwd."
+
+echo "Installation, done !"
