@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "install brew ..."
+echo "\ninstall brew ..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "configure git ..."
@@ -14,7 +14,7 @@ echo -e "> git config --global user.email \c"
 read email
 git config --global user.email $email
 
-echo "install oh-my-zsh ..."
+echo "\ninstall oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussel/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/abertsch/Menlo-for-Powerline $HOME/Repos/github.com/abertsch/Menlo-for-Powerline
@@ -23,7 +23,7 @@ echo "ZSH_THEME=\"agnoster\"" >> $HOME/.zshrc
 source $HOME/.zshrc
 
 
-echo "install and configure vim ..."
+echo "\ninstall and configure vim ..."
 git clone https://github.com/gponsinet/vimrc $HOME/Repos/github.com/gponsinet/vimrc
 rm -rf $HOME/.vim
 ln -s $HOME/Repos/github.com/gponsinet/vimrc $HOME/.vim
@@ -31,33 +31,37 @@ cd $HOME/.vim
 ./install.sh
 cd -
 
-echo "install bat ..."
+echo "\ninstall bat ..."
 brew install cmake
 cargo install bat
 echo '
 export PATH=$HOME/.cargo/bin:$PATH
 ' >> $HOME/.zshrc
 
-echo "install iterm2 ..."
+echo "\ninstall exa ..."
+cargo install exa
+ln -s $HOME/.cargo/bin/exa $HOME/.cargo/bin/ls
+
+echo "\ninstall iterm2 ..."
 brew install caskroom/cask/iterm2
 
-echo "install chrome ..."
+echo "\ninstall chrome ..."
 brew install caskroom/cask/google-chrome chrome-cli
 
-echo "install slack ..."
+echo "\ninstall slack ..."
 brew install caskroom/cask/slack
 
-echo "install discord ..."
+echo "\ninstall discord ..."
 brew install caskroom/cask/discord
 
-echo "install 1password ..."
+echo "\ninstall 1password ..."
 brew install caskroom/cask/1password
 
-echo "install xcode ..."
+echo "\ninstall xcode ..."
 brew install mas
 mas lucky xcode
 
-echo "install android-studio ..."
+echo "\ninstall android-studio ..."
 brew install caskroom/versions/java8
 brew install caskroom/cask/android-studio
 echo '
@@ -74,16 +78,16 @@ touch $HOME/.android/repositories.cfg
 echo "y" | sdkmanager ndk-bundle
 echo "y" | sdkmanager "system-images;android-27;google_apis_playstore;x86"
 
-echo "install react-native-debugger ..."
+echo "\ninstall react-native-debugger ..."
 brew install caskroom/cask/react-native-debugger
 
-echo "install ruby with bundler"
+echo "\ninstall ruby with bundler"
 brew install ruby
 echo 'export PATH=/usr/local/opt/ruby@2.3/bin:$PATH' >> $HOME/.zshrc
 source $HOME/.zshrc
 gem install bundler
 
-echo "install go and gomobile ..."
+echo "\ninstall go and gomobile ..."
 brew install go
 mkdir $HOME/.go
 echo '
@@ -97,4 +101,7 @@ ln -s $HOME/Repos $HOME/.go/src
 go get golang.org/x/tool/cmd/godoc
 go get golang.org/x/mobile/cmd/gomobile
 
-echo "Installation, done !"
+echo "\ninstall docker ..."
+brew install caskroom/cask/docker
+
+echo "\ninstallation, done !"
