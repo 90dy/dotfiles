@@ -22,7 +22,6 @@ cp $HOME/Repos/github.com/abertsch/Menlo-for-Powerline/Menlo* $HOME/Library/Font
 echo "ZSH_THEME=\"agnoster\"" >> $HOME/.zshrc
 source $HOME/.zshrc
 
-
 echo "\ninstall and configure vim ..."
 git clone https://github.com/gponsinet/vimrc $HOME/Repos/github.com/gponsinet/vimrc
 rm -rf $HOME/.vim
@@ -60,6 +59,7 @@ brew install caskroom/cask/1password
 echo "\ninstall xcode ..."
 brew install mas
 mas lucky xcode
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 echo "\ninstall android-studio ..."
 brew install caskroom/versions/java8
