@@ -13,6 +13,7 @@ git config --global user.name "$name"
 echo -e "> git config --global user.email \c"
 read email
 git config --global user.email $email
+git config --global pull.rebase true
 
 echo "\ninstall oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
