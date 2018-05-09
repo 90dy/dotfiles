@@ -14,6 +14,7 @@ echo -e "> git config --global user.email \c"
 read email
 git config --global user.email $email
 git config --global pull.rebase true
+git config --global core.editor vim
 
 echo "\ninstall oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -96,7 +97,7 @@ export GOPATH=$HOME/.go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$GOPATH/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
-' >> ~/.zshrc
+' >> $HOME/.zshrc
 source $HOME/.zshrc
 ln -s $HOME/Repos $HOME/.go/src
 go get golang.org/x/tool/cmd/godoc
@@ -104,5 +105,11 @@ go get golang.org/x/mobile/cmd/gomobile
 
 echo "\ninstall docker ..."
 brew install caskroom/cask/docker
+
+echo "\ninstall yarn ..."
+brew install yarn
+echo '
+export PATH=/usr/local/bin:$PATH
+' >> $HOME/.zshrc
 
 echo "\ninstallation, done !"
