@@ -4,7 +4,7 @@ echo "\ninstall brew ..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "configure git ..."
-mkdir $HOME/Repos
+mkdir $HOME/Workspace
 echo "What is your name ?"
 echo -e "> git config --global user.name \c"
 read name
@@ -19,15 +19,15 @@ git config --global core.editor vim
 echo "\ninstall oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussel/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/abertsch/Menlo-for-Powerline $HOME/Repos/github.com/abertsch/Menlo-for-Powerline
-cp $HOME/Repos/github.com/abertsch/Menlo-for-Powerline/Menlo* $HOME/Library/Fonts
+git clone https://github.com/abertsch/Menlo-for-Powerline $HOME/Workspace/github.com/abertsch/Menlo-for-Powerline
+cp $HOME/Workspace/github.com/abertsch/Menlo-for-Powerline/Menlo* $HOME/Library/Fonts
 echo "ZSH_THEME=\"agnoster\"" >> $HOME/.zshrc
 source $HOME/.zshrc
 
 echo "\ninstall and configure vim ..."
-git clone https://github.com/gponsinet/vimrc $HOME/Repos/github.com/gponsinet/vimrc
+git clone https://github.com/gponsinet/vimrc $HOME/Workspace/github.com/gponsinet/vimrc
 rm -rf $HOME/.vim
-ln -s $HOME/Repos/github.com/gponsinet/vimrc $HOME/.vim
+ln -s $HOME/Workspace/github.com/gponsinet/vimrc $HOME/.vim
 cd $HOME/.vim
 ./install.sh
 cd -
@@ -99,7 +99,7 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
 ' >> $HOME/.zshrc
 source $HOME/.zshrc
-ln -s $HOME/Repos $HOME/.go/src
+ln -s $HOME/Workspace $HOME/.go/src
 go get golang.org/x/tool/cmd/godoc
 go get golang.org/x/mobile/cmd/gomobile
 
@@ -110,6 +110,11 @@ echo "\ninstall yarn ..."
 brew install yarn
 echo '
 export PATH=/usr/local/bin:$PATH
+' >> $HOME/.zshrc
+
+echo "\nSetup Workspace ..."
+echo '
+export WORKSPACE=$HOME/Workspace
 ' >> $HOME/.zshrc
 
 echo "\ninstallation, done !"
