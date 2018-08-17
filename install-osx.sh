@@ -14,7 +14,9 @@ echo -e "> git config --global user.email \c"
 read email
 git config --global user.email $email
 git config --global pull.rebase true
-git config --global core.editor vim
+git config --global core.editor nvim
+git config --global commit.gpgsign true
+echo "Signed-off-by: $name <$email>" > $HOME/.gitmessage
 
 echo "\ninstall oh-my-zsh ..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
