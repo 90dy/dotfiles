@@ -111,7 +111,7 @@ brew install caskroom/cask/docker
 echo "\ninstall yarn ..."
 brew install yarn
 echo '
-export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
 ' >> $HOME/.zshrc
 
 echo "\nSetup Workspace ..."
